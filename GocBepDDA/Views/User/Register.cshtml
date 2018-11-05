@@ -1,0 +1,79 @@
+﻿@model GocBepDDA.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Source/css/user-form.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/Source/img/favicon.png" />
+    <title>DDA's Food Corner - The taste from our heart</title>
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h2>Đăng ký tài khoản</h2>
+            <h4>DDA's Food Corner</h4>
+            <div class="form-group">
+                <label class="message">Tên đăng nhập:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="message">Mật khẩu:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="message">Họ và tên:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="message">Địa chỉ:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="message">Số điện thoại:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="btnSubmit" type="submit" value="Đăng ký" class="button" />
+                </div>
+            </div>
+        </div>
+}
+
+            <p class="message">Đã có tài khoản? <a href="Login">Đăng nhập</a></p>
+            <p class="message"><a href="~/Home/Index">Quay về trang chủ</a></p>
+        </div>
+    </div>
+</body>
+</html>

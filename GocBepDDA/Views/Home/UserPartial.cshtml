@@ -1,0 +1,16 @@
+﻿@using GocBepDDA.Models;
+@model User
+
+@if (Session["UserLogin"] == null)
+{
+    <li id="login"><a href="~/User/Login">Đăng nhập</a></li>
+    <li id="register"><a href="~/User/Register">Đăng ký</a></li>
+}
+else
+{
+    <li id="user-name"><a href="#">Xin chào, @ViewBag.Name</a></li>
+    <li><a class="" href="@Url.Action("Logout","Home")">Đăng xuất</a></li>
+}
+
+
+

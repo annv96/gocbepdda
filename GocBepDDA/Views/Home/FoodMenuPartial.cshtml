@@ -1,0 +1,64 @@
+﻿@using GocBepDDA.Models;
+@model List<Food>
+<!--
+Start Menu Section
+==================================== -->
+@section menu {
+}
+<section id="menu" class="bg-one">
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="title text-center wow fadeInDown">
+                <h2> Thực <span style="color:orangered">Đơn</span></h2>
+                <div class="border"></div>
+            </div>
+            <!-- /section title -->
+        </div>
+        <div class="container">
+            <div class="row">
+                @{int i = 0; }
+                @foreach (var item in Model)
+                {
+                    i++;
+                    <div class="col-md-3 text-center wow fadeInDown" data-wow-duration="500ms">
+                        <div class="member-photo">
+                            <!--photo -->
+                            <img src="@Url.Content("~/Content/"+item.Image)" height="200" width="270" />
+                            <!--photo -->
+                            <!-- mask -->
+                            <div class="mask">
+                                    <div class="row" style="margin-top:50px">
+                                        <div class="btn btn-transparent"><a class="" href="@Url.Action("../FoodDetail/Detail", new { @Id=item.Id })">Chi tiết</a></div>
+                                    </div>
+                                    <div class="row">
+                                        @using (Html.BeginForm("AddCart", "Cart", new { @prdId = item.Id, @strUrl = Request.Url.ToString() }))
+                                        {
+                                            <input type="submit" class="btn btn-transparent" name="name" value="Đặt hàng ngay" />
+                                        }
+                                    </div>
+
+                            </div>
+                            <!-- /mask -->
+                        </div>
+
+                        <!-- member name & designation -->
+                        <div class="member-title">
+                            <div id="food-name"><h4>@item.Name</h4></div>
+                        </div>
+                        <!-- /member name & designation -->
+                    </div>
+                    if (i % 4 == 0)
+                    {
+                        <div style="clear:both;"></div>
+                    }
+                }
+            </div>
+        </div>
+    </div>  <br /><br /><br />
+</section>
+
+
+<!--
+End Menu Section
+==================================== -->

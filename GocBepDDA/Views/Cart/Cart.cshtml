@@ -1,0 +1,75 @@
+﻿@using GocBepDDA.Models;
+@model List<Cart>
+
+@{
+    ViewBag.Title = "DDA's Foods Corner- The taste from our heart";
+    Layout = "~/Views/Page_Layout/HomePageLayout.cshtml";
+}
+
+<!--
+Start Cart Section
+==================================== -->
+<section id="cart" class="bg-one">
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="title text-center wow fadeInDown">
+                <h2> Đơn <span style="color:orangered">Đặt hàng</span></h2>
+                <div class="border"></div>
+            </div>
+            <!-- /section title -->
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="nav-justified cart">
+                        <tr class="cart-header">
+                            <td>Mã</td>
+                            <td>Tên món ăn</td>
+                            <td>Hình ảnh</td>
+                            <td>Đơn giá</td>
+                            <td>Số lượng</td>
+                            <td>Thành tiền</td>
+                        </tr>
+
+
+                        @foreach (var item in Model)
+                        {
+                            <tr class="cart-item">
+                                <td>@item.prdId</td>
+                                <td>@item.prdName</td>
+                                <td><img src="@Url.Content("~/Content/" + item.prdImage)" height="100" width="130" /></td>
+                                <td>@string.Format("{0:0,0}", @item.prdPrice)<span> VNĐ</span></td>
+                                @using (Html.BeginForm("UpdateCart", "Cart", new { @prdId = item.prdId }))
+                                {
+                                    <td>@Html.TextBox("txtQuantity", @item.prdQuantity)</td>
+                                }
+
+                                <td>@string.Format("{0:0,0}", @item.prdTotal)<span> VNĐ</span></td>
+                                <td rowspan="2">@Html.ActionLink("Xóa","DeleteCart", new { @prdId=item.prdId})</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>  <br /><br /><br />
+</section>
+<style>
+    .cart td {
+        padding: 10px 10px 10px 10px;
+        text-align: center;
+        border: 1px solid white;
+    }
+
+    .cart-header {
+        font-size: 18px;
+    }
+
+    .cart-item {
+        font-size: 14px;
+    }
+</style>
+<!--
+End Detail Section
+==================================== -->
